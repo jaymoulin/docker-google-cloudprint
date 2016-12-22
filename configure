@@ -1,0 +1,18 @@
+#!/bin/sh
+
+if [ "$1" = "open" ]
+then
+    sed -i 's/Listen localhost:631/Listen 0.0.0.0:631/' /etc/cups/cupsd.conf
+    useradd $CUPS_USER_ADMIN --system -G root,lpadmin --no-create-home --password $(mkpasswd $CUPS_USER_PASSWORD)
+    systemctl restart cups
+elif [ "$1" = "close" ]
+then
+    sed -i 's/Listen 0.0.0.0:631/Listen localhost:631/' /etc/cups/cupsd.conf
+    userdel $CUPS_USER_ADMIN
+    cps-auth
+    systemctl restart cloudprintd cups
+else
+    echo "Unexpected parameter $1"
+    exit
+fi
+# RUN
