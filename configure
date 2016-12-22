@@ -1,18 +1,33 @@
 #!/bin/sh
 
-if [ "$1" = "open" ]
-then
-    sed -i 's/Listen localhost:631/Listen 0.0.0.0:631/' /etc/cups/cupsd.conf
-    useradd $CUPS_USER_ADMIN --system -G root,lpadmin --no-create-home --password $(mkpasswd $CUPS_USER_PASSWORD)
-    systemctl restart cups
-elif [ "$1" = "close" ]
-then
-    sed -i 's/Listen 0.0.0.0:631/Listen localhost:631/' /etc/cups/cupsd.conf
-    userdel $CUPS_USER_ADMIN
-    cps-auth
-    systemctl restart cloudprintd cups
-else
-    echo "Unexpected parameter $1"
-    exit
+usage="$(basename "$0") {-h|help|-o|open|-c|close}
+
+where:
+    -h|help  Show this help text
+    -o|open  Open printer configuration on 631 port (http://<your_device_IP>:631/admin)
+    -c|close Close printer configuration and gives URL to link to Google Cloudprint"
+
+if [ -z "$CUPS_USER_ADMIN" ] || [ -z "$CUPS_USER_PASSWORD" ]; then
+    echo "You must define \$CUPS_USER_ADMIN and \$CUPS_USER_PASSWORD"
+    exit 2
 fi
-# RUN
+
+case "$1" in
+help|-h) echo "$usage"
+   exit
+   ;;
+-o|open) sed -i 's/Listen localhost:631/Listen 0.0.0.0:631/' /etc/cups/cupsd.conf
+   useradd $CUPS_USER_ADMIN --system -G root,lpadmin --no-create-home --password $CUPS_USER_PASSWORD
+   /etc/init.d/cups restart
+   ;;
+-c|close) sed -i 's/Listen 0.0.0.0:631/Listen localhost:631/' /etc/cups/cupsd.conf
+   userdel $CUPS_USER_ADMIN
+   cps-auth
+   # systemctl restart cloudprintd
+   /etc/init.d/cups restart
+   ;;
+*)
+  echo "$usage"
+  exit 1
+  ;;
+esac

@@ -11,6 +11,7 @@ EXPOSE 631
 RUN sed -r -i 's/(Order allow\,deny)/\1\n  Allow all/' /etc/cups/cupsd.conf
 RUN echo "DefaultEncryption Never" >> /etc/cups/cupsd.conf
 
-ADD configure
+ADD configure /usr/bin/configure
+RUN chmod +x /usr/bin/configure
 
 CMD ["/usr/sbin/cupsd"]
