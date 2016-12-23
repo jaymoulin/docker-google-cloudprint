@@ -1,5 +1,7 @@
 FROM resin/rpi-raspbian
 
+MAINTAINER Jay MOULIN <jaymoulin@gmail.com>
+
 RUN apt-get update && apt-get install wget -y --force-yes
 RUN wget -O - https://davesteele.github.io/key-366150CE.pub.txt | apt-key add - 
 RUN echo "deb http://davesteele.github.io/cloudprint-service/repo cloudprint-jessie main" > /etc/apt/sources.list.d/cloudprint.list
