@@ -19,7 +19,7 @@ First, allow administration interface to be accessed to setup your printer:
 docker exec cloudprint configure open
 ```
 This will allow your printer to be configured. 
-Go to http://<raspberry_ip>:631 to configure it
+Go to http://__raspberry_ip__:631 to configure it
 
 Login/Password couple defined with `$CUPS_USER_ADMIN` `$CUPS_USER_PASSWORD` in installation command
 
