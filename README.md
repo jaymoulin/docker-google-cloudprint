@@ -26,7 +26,7 @@ Login/Password couple defined with `$CUPS_USER_ADMIN` `$CUPS_USER_PASSWORD` in i
 Once configured, close admin interface to secure it up and retrieve your Google Cloudprint URL.
 
 ```
-docker exec cloudprint configure close
+docker exec -t cloudprint configure close
 ```
 
 It will give you a Google Link. Copy/paste this URL in your browser to claim your printer, and voila!
