@@ -7,7 +7,7 @@ Installation
 ---
 
 ```
-docker run -d --privileged -v --restart=always /dev/bus/usb:/dev/bus/usb --name cloudprint -e CUPS_USER_ADMIN=admin -e CUPS_USER_PASSWORD=password -p 631:631 jaymoulin/rpi-google-cloudprint
+docker run -d --privileged --restart=always -v /dev/bus/usb:/dev/bus/usb --name cloudprint -e CUPS_USER_ADMIN=admin -e CUPS_USER_PASSWORD=password -p 631:631 jaymoulin/rpi-google-cloudprint
 ```
 
 You can change your admin login/password by replacing values for `CUPS_USER_ADMIN` and `CUPS_USER_PASSWORD`.
