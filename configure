@@ -7,7 +7,7 @@ where:
     -o|open  Open printer configuration on 631 port (http://<your_device_IP>:631/admin)
     -c|close Close printer configuration and gives URL to link to Google Cloudprint"
 
-if [[ -z "$CUPS_USER_ADMIN" || -z "$CUPS_USER_PASSWORD" ]]; then
+if [[ -z "$CUPS_USER_ADMIN" ] || [ -z "$CUPS_USER_PASSWORD" ]]; then
     echo "You must define \$CUPS_USER_ADMIN and \$CUPS_USER_PASSWORD"
     exit 2
 fi
