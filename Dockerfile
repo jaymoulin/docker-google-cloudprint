@@ -14,6 +14,8 @@ RUN sed -r -i 's/(Order allow\,deny)/\1\n  Allow all/' /etc/cups/cupsd.conf
 RUN echo "DefaultEncryption Never" >> /etc/cups/cupsd.conf
 
 ADD configure /usr/bin/configure
+ADD daemon.sh /root/daemon.sh
 RUN chmod +x /usr/bin/configure
+RUN chmod +x /root/daemon.sh
 
-CMD ["/usr/sbin/cloudprintd", "-a", "/var/lib/cloudprintd/authfile.json"]
+CMD ["/root/daemon.sh"]
