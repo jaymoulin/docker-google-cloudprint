@@ -16,4 +16,4 @@ RUN echo "DefaultEncryption Never" >> /etc/cups/cupsd.conf
 ADD configure /usr/bin/configure
 RUN chmod +x /usr/bin/configure
 
-CMD ["/usr/sbin/cupsd", "-f"]
+CMD ["/usr/sbin/cloudprintd", "-a", "/var/lib/cloudprintd/authfile.json"]
