@@ -31,6 +31,15 @@ docker exec cloudprint configure close
 
 It will give you a Google Link. Copy/paste this URL in your browser to claim your printer, and voila!
 
+Updating
+-----
+
+When Google Cloudprint new version is released, you will be able to update your running version with this command:
+ 
+```
+docker exec cloudprint configure update
+```
+
 Appendixes
 ---
 

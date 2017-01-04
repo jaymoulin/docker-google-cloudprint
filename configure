@@ -3,9 +3,10 @@
 usage="$(basename "$0") {-h|help|-o|open|-c|close}
 
 where:
-    -h|help  Show this help text
-    -o|open  Open printer configuration on 631 port (http://<your_device_IP>:631/admin)
-    -c|close Close printer configuration and gives URL to link to Google Cloudprint"
+    -h|help   Show this help text
+    -o|open   Open printer configuration on 631 port (http://<your_device_IP>:631/admin)
+    -c|close  Close printer configuration and gives URL to link to Google Cloudprint
+    -u|update Update Google Cloudprint services"
 
 if [[ -z "$CUPS_USER_ADMIN" || -z "$CUPS_USER_PASSWORD" ]]; then
     echo "You must define \$CUPS_USER_ADMIN and \$CUPS_USER_PASSWORD"
@@ -27,6 +28,8 @@ help|-h) echo "$usage"
    # systemctl restart cloudprintd
    /etc/init.d/cups restart
    ;;
+-u|update) apt-get update && apt-get upgrade -y
+  ;;
 *)
   echo "$usage"
   exit 1
