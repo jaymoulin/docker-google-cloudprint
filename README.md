@@ -7,7 +7,7 @@ Installation
 ---
 
 ```
-docker run -d --privileged -v --restart=always /dev/bus/usb:/dev/bus/usb --name cloudprint -e CUPS_USER_ADMIN=admin -e CUPS_USER_PASSWORD=password -p 631:631 jaymoulin/rpi-google-cloudprint
+docker run -d --privileged --restart=always -v /dev/bus/usb:/dev/bus/usb --name cloudprint -e CUPS_USER_ADMIN=admin -e CUPS_USER_PASSWORD=password -p 631:631 jaymoulin/rpi-google-cloudprint
 ```
 
 You can change your admin login/password by replacing values for `CUPS_USER_ADMIN` and `CUPS_USER_PASSWORD`.
@@ -19,14 +19,14 @@ First, allow administration interface to be accessed to setup your printer:
 docker exec cloudprint configure open
 ```
 This will allow your printer to be configured. 
-Go to http://<raspberry_ip>:631 to configure it
+Go to http://__raspberry_ip__:631 to configure it
 
 Login/Password couple defined with `$CUPS_USER_ADMIN` `$CUPS_USER_PASSWORD` in installation command
 
 Once configured, close admin interface to secure it up and retrieve your Google Cloudprint URL.
 
 ```
-docker exec cloudprint configure close
+docker exec -t cloudprint configure close
 ```
 
 It will give you a Google Link. Copy/paste this URL in your browser to claim your printer, and voila!
