@@ -37,7 +37,7 @@ Updating
 When Google Cloudprint new version is released, you will be able to update your running version with this command:
  
 ```
-docker exec cloudprint configure update
+docker exec -t cloudprint configure update
 ```
 
 Appendixes
