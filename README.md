@@ -1,7 +1,7 @@
-Raspberry PI - Google Cloudprint - Docker Container
+Raspberry PI - Google Cloudprint - Docker Image
 =
 
-This container allow you to configure your printer to your Google Cloudprint easily thanks to Docker.
+This image allow you to configure your printer to your Google Cloudprint easily thanks to Docker.
 
 Installation
 ---
