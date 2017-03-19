@@ -1,5 +1,9 @@
+![logo](logo.png "Raspberry PI - Google Cloudprint - Docker Image")
+
 Raspberry PI - Google Cloudprint - Docker Image
 =
+
+[![latest release](https://img.shields.io/github/release/jaymoulin/docker-rpi-google-cloudprint.svg "latest release")](http://github.com/jaymoulin/docker-rpi-google-cloudprint/releases)
 
 This image allows you to configure your printer to your Google Cloudprint easily thanks to Docker.
 
