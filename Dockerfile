@@ -1,12 +1,12 @@
-FROM sdhibit/rpi-raspbian
+FROM jaymoulin/rpi-python:alpine-2
 
 MAINTAINER Jay MOULIN <jaymoulin@gmail.com>
 
-RUN apt-get update && apt-get install wget -y --force-yes && \
-	wget -O - https://davesteele.github.io/key-366150CE.pub.txt | apt-key add - && \
-	echo "deb http://davesteele.github.io/cloudprint-service/repo cloudprint-jessie main" > /etc/apt/sources.list.d/cloudprint.list && \
-	apt-get update && \ 
-	apt-get install cloudprint-service -y && apt-get remove wget -y && apt-get clean && apt-get autoremove -y
+RUN apk add --update --no-cache --virtual .build-deps g++ && \
+    apk add --update --no-cache cups-dev cups && \
+    python -m ensurepip --default-pip && \
+    pip install cloudprint[daemon] && \
+    apk del g++ --purge .build-deps
 
 EXPOSE 631
 

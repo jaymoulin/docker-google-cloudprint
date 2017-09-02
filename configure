@@ -18,17 +18,18 @@ help|-h) echo "$usage"
    exit
    ;;
 -o|open) sed -i 's/Listen localhost:631/Listen 0.0.0.0:631/' /etc/cups/cupsd.conf
-   useradd $CUPS_USER_ADMIN --system -G root,lpadmin --no-create-home
+   adduser $CUPS_USER_ADMIN -S -H -G lpadmin
+   adduser $CUPS_USER_ADMIN -S -H -G root
    echo "$CUPS_USER_ADMIN:$CUPS_USER_PASSWORD" | chpasswd
-   /etc/init.d/cups restart
+   pkill -f cupsd
    ;;
 -c|close) sed -i 's/Listen 0.0.0.0:631/Listen localhost:631/' /etc/cups/cupsd.conf
-   userdel $CUPS_USER_ADMIN
-   cps-auth
+   deluser $CUPS_USER_ADMIN
+   cloudprint
    # systemctl restart cloudprintd
-   /etc/init.d/cups restart
+   pkill -f cupsd
    ;;
--u|update) apt-get update && apt-get upgrade -y
+-u|update) pip install cloudprint[daemon] -U
   ;;
 *)
   echo "$usage"
