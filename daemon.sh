@@ -4,7 +4,7 @@ trap 'pkill -f cups && pkill -f cloudprint && exit 0' TERM INT
 if [ -f /var/lib/cloudprintd/authfile.json ]
 then
     /usr/sbin/cupsd -f &
-    cloudprint -d -a /var/lib/cloudprintd/authfile.json &
+    cloudprint -d -a /var/lib/cloudprintd/authfile.json &> /dev/stderr
     PID=$!
     wait $PID
 else
