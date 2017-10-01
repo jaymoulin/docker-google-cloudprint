@@ -3,7 +3,7 @@ FROM jaymoulin/rpi-python:alpine-2
 MAINTAINER Jay MOULIN <jaymoulin@gmail.com>
 
 RUN apk add --update --no-cache --virtual .build-deps g++ && \
-    apk add --update --no-cache cups-dev cups && \
+    apk add --update --no-cache cups cups-dev cups-filters && \
     python -m ensurepip --default-pip && \
     pip install cloudprint[daemon] && \
     apk del g++ --purge .build-deps

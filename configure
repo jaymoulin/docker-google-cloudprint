@@ -18,18 +18,24 @@ help|-h) echo "$usage"
    exit
    ;;
 -o|open) sed -i 's/Listen localhost:631/Listen 0.0.0.0:631/' /etc/cups/cupsd.conf
-   adduser $CUPS_USER_ADMIN -S -H -G lpadmin
-   adduser $CUPS_USER_ADMIN -S -H -G root
+   getent passwd $CUPS_USER_ADMIN > /dev/null
+   if [ ! $? -eq 0 ]; then
+       adduser $CUPS_USER_ADMIN -S -H
+   fi
+   addgroup $CUPS_USER_ADMIN lpadmin
+   addgroup $CUPS_USER_ADMIN root
    echo "$CUPS_USER_ADMIN:$CUPS_USER_PASSWORD" | chpasswd
    pkill -f cupsd
    ;;
 -c|close) sed -i 's/Listen 0.0.0.0:631/Listen localhost:631/' /etc/cups/cupsd.conf
    deluser $CUPS_USER_ADMIN
-   cloudprint
+   cloudprint -c
    # systemctl restart cloudprintd
    pkill -f cupsd
    ;;
--u|update) pip install cloudprint[daemon] -U
+-u|update) 
+    apk add cups cups-dev cups-filters --update
+    pip install cloudprint[daemon] -U
   ;;
 *)
   echo "$usage"
