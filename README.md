@@ -9,7 +9,6 @@ Raspberry PI - Google Cloudprint - Docker Image
 [![Bitcoin donation](https://github.com/jaymoulin/jaymoulin.github.io/raw/master/btc.png "Bitcoin donation")](https://m.freewallet.org/id/374ad82e/btc)
 [![Litecoin donation](https://github.com/jaymoulin/jaymoulin.github.io/raw/master/ltc.png "Litecoin donation")](https://m.freewallet.org/id/374ad82e/ltc)
 [![PayPal donation](https://github.com/jaymoulin/jaymoulin.github.io/raw/master/ppl.png "PayPal donation")](https://www.paypal.me/jaymoulin)
-[![Beerpay donation](https://beerpay.io/jaymoulin/docker-rpi-google-cloudprint/badge.svg "Beerpay donation")](https://beerpay.io/jaymoulin/docker-rpi-google-cloudprint)
 
 This image allows you to configure your printer to your Google Cloudprint easily thanks to Docker.
 
