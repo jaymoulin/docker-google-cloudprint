@@ -1,11 +1,11 @@
-![logo](logo.png "Raspberry PI - Google Cloudprint - Docker Image")
+![logo](logo.png "Google Cloudprint - Docker Image")
 
-Raspberry PI - Google Cloudprint - Docker Image
-===============================================
+Google Cloudprint - Docker Image (Multiarch)
+============================================
 
-[![latest release](https://img.shields.io/github/release/jaymoulin/docker-rpi-google-cloudprint.svg "latest release")](http://github.com/jaymoulin/docker-rpi-google-cloudprint/releases)
-[![Docker Pulls](https://img.shields.io/docker/pulls/jaymoulin/rpi-google-cloudprint.svg)](https://hub.docker.com/r/jaymoulin/rpi-google-cloudprint/)
-[![Docker Stars](https://img.shields.io/docker/stars/jaymoulin/rpi-google-cloudprint.svg)](https://hub.docker.com/r/jaymoulin/rpi-google-cloudprint/)
+[![latest release](https://img.shields.io/github/release/jaymoulin/docker-google-cloudprint.svg "latest release")](http://github.com/jaymoulin/docker-google-cloudprint/releases)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jaymoulin/google-cloudprint.svg)](https://hub.docker.com/r/jaymoulin/google-cloudprint/)
+[![Docker Stars](https://img.shields.io/docker/stars/jaymoulin/google-cloudprint.svg)](https://hub.docker.com/r/jaymoulin/google-cloudprint/)
 [![Bitcoin donation](https://github.com/jaymoulin/jaymoulin.github.io/raw/master/btc.png "Bitcoin donation")](https://m.freewallet.org/id/374ad82e/btc)
 [![Litecoin donation](https://github.com/jaymoulin/jaymoulin.github.io/raw/master/ltc.png "Litecoin donation")](https://m.freewallet.org/id/374ad82e/ltc)
 [![PayPal donation](https://github.com/jaymoulin/jaymoulin.github.io/raw/master/ppl.png "PayPal donation")](https://www.paypal.me/jaymoulin)
@@ -16,7 +16,7 @@ Installation
 ---
 
 ```
-docker run -d --privileged --restart=always -v /dev/bus/usb:/dev/bus/usb --name cloudprint -e CUPS_USER_ADMIN=admin -e CUPS_USER_PASSWORD=password -p 631:631 jaymoulin/rpi-google-cloudprint
+docker run -d --privileged --restart=always -v /dev/bus/usb:/dev/bus/usb --name cloudprint -e CUPS_USER_ADMIN=admin -e CUPS_USER_PASSWORD=password -p 631:631 jaymoulin/google-cloudprint
 ```
 
 You can change your admin login/password by replacing values for `CUPS_USER_ADMIN` and `CUPS_USER_PASSWORD`.
@@ -28,7 +28,7 @@ First, allow administration interface to be accessed to setup your printer:
 docker exec cloudprint configure open
 ```
 This will allow your printer to be configured. 
-Go to http://__raspberry_ip__:631 to configure it
+Go to http://__your_machine_ip__:631 to configure it
 
 Login/Password couple defined with `$CUPS_USER_ADMIN` `$CUPS_USER_PASSWORD` in installation command
 
@@ -52,7 +52,7 @@ docker exec -t cloudprint configure update
 Appendixes
 ---
 
-### Install RaspberryPi Docker
+### Install Docker
 
 If you don't have Docker installed yet, you can do it easily in one line using this command
  
@@ -64,5 +64,5 @@ curl -sSL "https://gist.githubusercontent.com/jaymoulin/e749a189511cd965f45919f2
 
 To build this image locally 
 ```
-docker build -t jaymoulin/rpi-google-cloudprint .
+docker build -t jaymoulin/google-cloudprint .
 ```

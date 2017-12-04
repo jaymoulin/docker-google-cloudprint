@@ -1,6 +1,10 @@
-FROM jaymoulin/rpi-python:alpine-2
+FROM python:2-alpine3.6 as builder
 
-MAINTAINER Jay MOULIN <jaymoulin@gmail.com>
+COPY qemu-*-static /usr/bin/
+
+FROM builder
+
+LABEL maintainer="Jay MOULIN <jaymoulin@gmail.com> <https://twitter.com/MoulinJay>"
 
 RUN apk add --update --no-cache --virtual .build-deps g++ && \
     apk add --update --no-cache cups cups-dev cups-filters && \
