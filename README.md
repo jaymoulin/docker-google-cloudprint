@@ -49,6 +49,14 @@ When Google Cloudprint new version is released, you will be able to update your 
 docker exec -t cloudprint configure update
 ```
 
+Keeping data
+------------
+
+You can mount volumes when you `run` your container to keep your data :
+
+- `/root/` (file `.cloudprintauth.json`) to keep your google credentials
+- `/etc/cups` to keep your printer configuration
+
 Appendixes
 ---
 
