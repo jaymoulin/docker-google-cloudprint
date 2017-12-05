@@ -1,13 +1,15 @@
-VERSION ?= 0.3.0
-CAHCE ?= --no-cache=1
+VERSION ?= 0.3.1
+CACHE ?= --no-cache=1
 FULLVERSION ?= ${VERSION}
 archs = s390x arm32v7 amd64 i386 arm64v8 arm32v6
 
 .PHONY: all build publish latest
 all: build publish latest
 build:
+	touch qemu-t-static
 	rm qemu-*-static
 	cp /usr/bin/qemu-arm-static .
+	cp /usr/bin/qemu-s390x-static .
 	cp /usr/bin/qemu-aarch64-static .
 	$(foreach arch,$(archs), \
 		cat Dockerfile | sed "s/FROM python:2-alpine/FROM ${arch}\/python:2-alpine/g" > .Dockerfile; \
