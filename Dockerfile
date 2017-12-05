@@ -17,7 +17,7 @@ EXPOSE 631
 RUN sed -r -i 's/(Order allow\,deny)/\1\n  Allow all/' /etc/cups/cupsd.conf && \
 	echo "DefaultEncryption Never" >> /etc/cups/cupsd.conf
 
-ADD configure /usr/bin/configure
-ADD daemon.sh /root/daemon.sh
+COPY configure /usr/bin/configure
+COPY daemon.sh /usr/bin/daemon
 
-CMD ["/root/daemon.sh"]
+CMD ["daemon"]

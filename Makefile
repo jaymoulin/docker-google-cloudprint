@@ -6,7 +6,9 @@ archs = s390x arm32v7 amd64 i386 arm64v8 arm32v6
 .PHONY: all build publish latest
 all: build publish latest
 build:
-	cp /usr/bin/qemu-*-static .
+	rm qemu-*-static
+	cp /usr/bin/qemu-arm-static .
+	cp /usr/bin/qemu-aarch64-static .
 	$(foreach arch,$(archs), \
 		cat Dockerfile | sed "s/FROM python:2-alpine/FROM ${arch}\/python:2-alpine/g" > .Dockerfile; \
 		docker build -t jaymoulin/google-cloudprint:${VERSION}-$(arch) -f .Dockerfile ${CACHE} .;\
