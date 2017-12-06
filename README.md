@@ -16,10 +16,12 @@ Installation
 ---
 
 ```
-docker run -d --privileged --restart=always -v /dev/bus/usb:/dev/bus/usb --name cloudprint -e CUPS_USER_ADMIN=admin -e CUPS_USER_PASSWORD=password -p 631:631 jaymoulin/google-cloudprint
+docker run -d --privileged --restart=always -v /dev/bus/usb:/dev/bus/usb -v "$HOME/.cloudprint/":/root --name cloudprint -e CUPS_USER_ADMIN=admin -e CUPS_USER_PASSWORD=password -p 631:631 jaymoulin/google-cloudprint
 ```
 
 You can change your admin login/password by replacing values for `CUPS_USER_ADMIN` and `CUPS_USER_PASSWORD`.
+
+Change your `$HOME/.cloudprint/` volume to a path where you can keep your data. Then you'll be able to use the `configure load` and `configure save` to keep your configuration files 
 
 Configuration
 ---
@@ -40,6 +42,23 @@ docker exec -t cloudprint configure close
 
 It will give you a Google Link. Copy/paste this URL in your browser to claim your printer, and voila!
 
+
+Keeping data
+------------
+
+Use the following command to keep your CUPS configuration in your `save volume` (`$HOME/.cloudprint/` in the example)
+
+```
+docker exec -t cloudprint configure save
+```
+
+Use the following command to load your saved CUPS configuration from your `save volume` (`$HOME/.cloudprint/` in the example) back in CUPS 
+
+```
+docker exec -t cloudprint configure load
+```
+
+
 Updating
 -----
 
@@ -48,14 +67,6 @@ When Google Cloudprint new version is released, you will be able to update your 
 ```
 docker exec -t cloudprint configure update
 ```
-
-Keeping data
-------------
-
-You can mount volumes when you `run` your container to keep your data :
-
-- `/root/` (file `.cloudprintauth.json`) to keep your google credentials
-- `/etc/cups` to keep your printer configuration
 
 Appendixes
 ---
