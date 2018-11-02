@@ -4,7 +4,9 @@ COPY qemu-*-static /usr/bin/
 
 FROM builder
 
+ARG VERSION=0.4.2
 LABEL maintainer="Jay MOULIN <jaymoulin@gmail.com> <https://twitter.com/MoulinJay>"
+LABEL version="${VERSION}"
 EXPOSE 631
 RUN apk add --update --no-cache --virtual .build-deps g++ && \
     apk add --update --no-cache cups cups-dev cups-filters && \
