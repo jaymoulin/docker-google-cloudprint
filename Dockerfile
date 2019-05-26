@@ -11,6 +11,7 @@ EXPOSE 631
 RUN apk add --update --no-cache --virtual .build-deps g++ && \
     apk add --update --no-cache cups cups-dev cups-filters && \
     python -m ensurepip --default-pip && \
+    pip install --upgrade pip &&\
     pip install cloudprint[daemon] && \
     apk del g++ --purge .build-deps && \
     sed -r -i 's/(Order allow\,deny)/\1\n  Allow all/' /etc/cups/cupsd.conf && \
