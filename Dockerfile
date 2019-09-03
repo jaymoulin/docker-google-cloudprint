@@ -1,4 +1,4 @@
-FROM python:2-alpine3.6 as builder
+FROM python:2-alpine3.10 as builder
 
 COPY qemu-*-static /usr/bin/
 
