@@ -1,10 +1,10 @@
-FROM python:2-alpine3.10 as builder
+FROM python:2-alpine3.11 as builder
 
 COPY qemu-*-static /usr/bin/
 
 FROM builder
 
-ARG VERSION=0.4.4
+ARG VERSION=0.4.6
 LABEL maintainer="Jay MOULIN <jaymoulin@gmail.com> <https://twitter.com/MoulinJay>"
 LABEL version="${VERSION}"
 EXPOSE 631
