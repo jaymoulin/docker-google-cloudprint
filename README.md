@@ -15,6 +15,9 @@ Google Cloudprint - Docker Image (Multiarch)
 
 This image allows you to configure your printer to your Google Cloudprint easily thanks to Docker.
 
+IMPORTANT NOTE: Google decided to discontinue Google Cloud Print Services as-of 2021 and suggest to migrate to self hosting with CUPS. This product will no longer be maintained.
+https://support.google.com/chrome/a/answer/9633006?hl=en
+
 Installation
 ---
 
