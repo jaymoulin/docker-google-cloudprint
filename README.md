@@ -10,6 +10,8 @@ Google Cloudprint - Docker Image (Multiarch)
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png "Buy me a coffee")](https://www.buymeacoffee.com/3Yu8ajd7W)
 [![Become a Patron](https://badgen.net/badge/become/a%20patron/F96854 "Become a Patron")](https://patreon.com/jaymoulin)
 
+(This product is available under a free and permissive license, but needs financial support to sustain its continued improvements. In addition to maintenance and stability there are many desirable features yet to be added.)
+
 This image allows you to configure your printer to your Google Cloudprint easily thanks to Docker.
 
 IMPORTANT NOTE: Google decided to discontinue Google Cloud Print Services as-of 2021 and suggest to migrate to self hosting with CUPS. This product will no longer be maintained.
